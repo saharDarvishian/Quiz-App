@@ -3,7 +3,7 @@ import formatData from "./helper.js";
 const loader = document.getElementById("loader");
 const container = document.getElementById("container");
 const questionText = document.getElementById("question-text");
-const answerText = document.querySelectorAll(".answer-text");
+const answerList = document.querySelectorAll(".answer-text");
 const scoreText = document.getElementById("score");
 const questionNum = document.getElementById("question-number");
 const nextButton = document.getElementById("next-button");
@@ -16,7 +16,6 @@ let questionIndex = 0;
 let correctAnswer = null;
 let score = 0;
 let isAccepted = true;
-let questionNumber = 1;
 
 const fetchData = async () => {
   const result = await fetch(URL);
@@ -32,12 +31,14 @@ const start = () => {
 };
 
 const showQuestion = () => {
+  questionNum.innerText = ++questionIndex; 
+
   const { question, answers, correctIndex } = formatedData[questionIndex];
   questionText.innerText = question;
   correctAnswer = correctIndex;
   console.log(correctAnswer);
   answers.forEach((answer, index) => {
-    answerText[index].innerText = answer;
+    answerList[index].innerText = answer;
   });
 };
 
@@ -52,27 +53,28 @@ const checkAnswer = (event, index) => {
     scoreText.innerText = score;
   } else {
     event.target.classList.add("incorrect");
-    answerText[correctAnswer].classList.add("correct");
+    answerList[correctAnswer].classList.add("correct");
   }
 };
 
 const nextHandler = () => {
-  answerText.forEach((item) => {
-    item.classList.remove("correct");
-    item.classList.remove("incorrect");
-  });
-  
-  questionIndex += 1;
-  questionNumber = questionNumber += 1;
-  questionNum.innerText = questionNumber;
-  showQuestion();
+  questionIndex++;
 
-  isAccepted = true;
-  checkAnswer(); 
-}; 
+  if (questionIndex < formatedData.length) {
+    isAccepted = true;
+    removeClasses();
+    showQuestion();
+  } else {
+    console.log("finish");
+  }
+};
+
+const removeClasses = () => {
+  answerList.forEach((button) => (button.className = "answer-text"));
+};
 
 window.addEventListener("load", fetchData);
 nextButton.addEventListener("click", nextHandler);
-answerText.forEach((button, index) => {
-  button.addEventListener("click", (event) => checkAnswer(event, index), true);
+answerList.forEach((button, index) => {
+  button.addEventListener("click", (event) => checkAnswer(event, index));
 });
