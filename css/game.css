@@ -1,3 +1,5 @@
+
+
 #loader {
   width: 100px;
   height: 100px;
@@ -7,7 +9,6 @@
   border-radius: 50%;
   display: inline-block;
   animation: rotation 1.5s linear infinite;
-  display: none;
 }
 
 @keyframes rotation {
@@ -21,7 +22,7 @@
 }
 
 #container {
-  display: block;
+  display: none;
   width: 700px;
 }
 
@@ -104,5 +105,21 @@ h3 {
 #finish-button:hover {
   background-color: #6757d9;
   color: #fff;
+}
+
+.correct {
+  background-color: lightgreen;
+}
+
+.incorrect {
+  background-color: lightcoral;
+}
+
+.correct:hover {
+  background-color: lightgreen;
+}
+
+.incorrect:hover {
+  background-color: lightcoral;
 }
 
