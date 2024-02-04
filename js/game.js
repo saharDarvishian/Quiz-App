@@ -4,12 +4,19 @@ const loader = document.getElementById("loader");
 const container = document.getElementById("container");
 const questionText = document.getElementById("question-text");
 const answerText = document.querySelectorAll(".answer-text");
+const scoreText = document.getElementById("score");
+const questionNum = document.getElementById("question-number");
+const nextButton = document.getElementById("next-button");
 
+const CORRECT_BONUS = 10;
 const URL =
   "https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple";
 let formatedData = null;
 let questionIndex = 0;
 let correctAnswer = null;
+let score = 0;
+let isAccepted = true;
+let questionNumber = 1;
 
 const fetchData = async () => {
   const result = await fetch(URL);
@@ -34,18 +41,38 @@ const showQuestion = () => {
   });
 };
 
-const showAnswer = (event, index) => {
-  const result = index === correctAnswer ? true : false;
-  if (result) {
+const checkAnswer = (event, index) => {
+  if (!isAccepted) return;
+  isAccepted = false;
+
+  const isCorrect = index === correctAnswer ? true : false;
+  if (isCorrect) {
     event.target.classList.add("correct");
+    score += CORRECT_BONUS;
+    scoreText.innerText = score;
   } else {
     event.target.classList.add("incorrect");
     answerText[correctAnswer].classList.add("correct");
   }
 };
 
-window.addEventListener("load", fetchData);
+const nextHandler = () => {
+  answerText.forEach((item) => {
+    item.classList.remove("correct");
+    item.classList.remove("incorrect");
+  });
+  
+  questionIndex += 1;
+  questionNumber = questionNumber += 1;
+  questionNum.innerText = questionNumber;
+  showQuestion();
 
+  isAccepted = true;
+  checkAnswer(); 
+}; 
+
+window.addEventListener("load", fetchData);
+nextButton.addEventListener("click", nextHandler);
 answerText.forEach((button, index) => {
-  button.addEventListener("click", (event) => showAnswer(event, index));
+  button.addEventListener("click", (event) => checkAnswer(event, index), true);
 });

@@ -108,18 +108,18 @@ h3 {
 }
 
 .correct {
-  background-color: lightgreen;
+  background-color: #5bd7bc;
 }
 
 .incorrect {
-  background-color: lightcoral;
+  background-color: #fe6681;
 }
 
 .correct:hover {
-  background-color: lightgreen;
+  background-color: #5bd7bc;
 }
 
 .incorrect:hover {
-  background-color: lightcoral;
+  background-color: #fe6681;
 }
 
