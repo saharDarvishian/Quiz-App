@@ -123,3 +123,7 @@ h3 {
   background-color: #fe6681;
 }
 
+#error {
+  display: none;
+}
+

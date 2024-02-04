@@ -1,56 +1,64 @@
-h1 {
-  margin-bottom: 30px;
-  color: darkblue;
+h3 {
+  font-size: 2.2rem;
+  margin-bottom: 70px;
+  color: #6757d9;
 }
 
-.player-scores {
+li {
+  list-style: none;
+  background-color: #fff;
+  border-radius: 20px;
+  width: 500px;
+  margin-bottom: 15px;
+  padding: 15px;
+  font-size: 1.2rem;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
-.player-status {
-  background-color: #fff;
-  width: 400px;
-  padding: 15px;
-  border-radius: 15px;
-  margin-bottom: 30px;
-  position: relative;
-}
-
-.player-status span {
-  margin-right: 10px;
-  display: inline-block;
-  padding: 5px 8px;
-}
-
-.player-id {
+li span:first-child {
+  background-color: #6757d9;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
   color: #fff;
-  background-color: darkblue;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-.score-number {
-  position: absolute;
-  right: 0;
-  color: darkblue;
-  background-color: rgb(215, 225, 246);
-  border-radius: 15px;
+li p {
+  width: 100%;
+  padding-left: 20px;
+  font-size: 1.3rem;
+  color: rgb(85, 85, 85);
 }
 
-.player-scores a {
-  padding: 8px 12px;
-  color: darkblue;
+li span:last-child {
+  background-color: #eeefdb;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  color: #6757d9;
+  font-size: 1.2rem;
+  border-radius: 12px;
+}
+
+a {
+  color: #6757d9;
+  font-size: 1rem;
+  background-color: #eeefdb;
+  border: 2px solid #6757d9;
   border-radius: 15px;
-  border: 2px solid darkblue;
-  background-color: rgb(215, 225, 246);
+  padding: 8px 15px;
+  margin: 20px;
   cursor: pointer;
   text-decoration: none;
-  font-size: 0.9rem;
+  transition: all 0.2s ease-in;
 }
 
-
-.player-scores a:hover {
+a:hover {
+  background-color: #6757d9;
   color: #fff;
-  background-color: darkblue;
 }
